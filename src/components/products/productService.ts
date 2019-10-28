@@ -1,8 +1,8 @@
 import { Service } from 'typedi';
 @Service()
-class ProductService {
+export class ProductService {
 
-    public getProducts(active: boolean) {
+    getProducts(active: boolean) {
         if(active == true){
             return [
                 {"idProduct": "PROD0001", "name": "Iphone", "Description": "IOS 11"},
@@ -11,25 +11,26 @@ class ProductService {
         }
     }
     
-    public getProduct(idProduct: string) {
+    getProduct(idProduct: string) {
         if(idProduct){
             return {"idProduct": "PROD0001", "name": "Iphone", "Description": "IOS 11"};
         }
     }
 
-    public postProduct(body: any) {
+    postProduct(body: any) {
         if(body) {
             return body;
         }
     }
 
-    public putProduct(idProduct: string, body: any) {
+    putProduct(idProduct: string, body: any) {
         if(body) {
             return body;
         }
     }
 
-    public deleteProduct(idProduct: string) {
+    deleteProduct(idProduct: string) {
+        console.log("Eliminado satisfactoriamente");
         if(idProduct) {
             return idProduct;
         }
@@ -37,4 +38,4 @@ class ProductService {
 
 }
 
-export default ProductService;
+// export default ProductService;

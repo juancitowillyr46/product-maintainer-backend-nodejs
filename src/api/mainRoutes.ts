@@ -1,14 +1,14 @@
-import ProductRoutes from "../components/products/productRoutes";
+import { ProductRoutes } from "../components/products/productRoutes";
 import { Application } from "express";
-class MainRoutes {
+export class MainRoutes {
     
-    constructor(){
-        
+    public constructor(app: Application){
+        new ProductRoutes(app);
     }
 
-    public getMainRoutes(app: Application): void {
-        new ProductRoutes().routes(app);
-    }
+    // public getMainRoutes(app: Application): void {
+        
+    // }
 
 }
-export default MainRoutes;
+// export default MainRoutes;

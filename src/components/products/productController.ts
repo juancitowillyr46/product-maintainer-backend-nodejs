@@ -1,21 +1,13 @@
 import { Container } from 'typedi';
 import { Request, Response } from "express";
-import ProductService from "./productService";
+import { ProductService } from "./productService";
 
-class ProductController {
+export class ProductController {
 
-    // private container: any = Container.get(ProductService);
+    private productService: ProductService;
 
-    // private productService_: ProductService;
-    // private productService: ProductService
-    constructor(
-        
-    ) {
-        // this.container = Container.get(ProductService);
-
-        // this.productService_ = this.productService;
-        // // this.productService = productService;
-        // console.log(this.productService_);
+    constructor() {
+        this.productService = new ProductService();
     }
 
     public getProducts(request: Request, response: Response){
@@ -39,10 +31,9 @@ class ProductController {
     }
 
     public deleteProduct(request: Request, response: Response) {
-        const ps = Container.get(ProductService);
-        return response.status(200).send({data: ps.deleteProduct(request.params.id)});
+        return response.status(200).send({data: this.productService.deleteProduct(request.params.id)});
     }
 
 }
 
-export default ProductController;
+// export default ProductController;

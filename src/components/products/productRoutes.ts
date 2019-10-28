@@ -1,17 +1,19 @@
-import { Application, Router } from "express";
+import { Application, Router, Request, Response } from "express";
 import express from "express";
-import ProductController from "./productController";
+import { ProductController } from "./productController";
 
-class ProductRoutes {
+export class ProductRoutes {
 
     public productController: ProductController;
     private router: Router = express.Router();
 
-    constructor() {
+    constructor(app: Application) {
         this.productController = new ProductController();
+        this.routes(app);
     }
 
     public routes(app: Application): void {
+        
         // GET Read Products
         this.router.get('/', this.productController.getProducts);
 
@@ -25,7 +27,11 @@ class ProductRoutes {
         this.router.put('/:id', this.productController.putProduct);
         
         // DELETE Product
-        this.router.delete('/:id', this.productController.deleteProduct);
+        this.router.delete('/:id', (request: Request, response: Response) => {
+            
+            this.productController.deleteProduct(request, response);
+
+        });
 
         app.use('/products', this.router);
     }
@@ -33,4 +39,4 @@ class ProductRoutes {
 
 }
 
-export default ProductRoutes;
+// export default ProductRoutes;

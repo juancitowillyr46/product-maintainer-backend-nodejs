@@ -1,13 +1,13 @@
 import express, { Application } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import MainRoutes from "./mainRoutes";
+import { MainRoutes } from "./mainRoutes";
 
 
 class App {
 
     public app: express.Application;
-    private mainRoutes:MainRoutes = new MainRoutes(); 
+    // private mainRoutes:MainRoutes = new MainRoutes(this.app); 
 
     constructor() {
         this.app = express();
@@ -22,7 +22,8 @@ class App {
     }
 
     private router(): void {
-        this.mainRoutes.getMainRoutes(this.app);
+        // this.mainRoutes(this.app);
+        new MainRoutes(this.app);
     }
 
 }
